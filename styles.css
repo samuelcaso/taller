@@ -1,0 +1,341 @@
+/* Reset total */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body: fondo negro absoluto */
+body {
+    background-color: #000000;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Canvas ocupa toda la pantalla */
+#impactoCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+}
+
+/* Overlay de inicio */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#overlay.oculto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#inicioContenedor {
+    text-align: center;
+    color: white;
+}
+
+#inicioContenedor h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+#inicioContenedor p {
+    font-size: 1rem;
+    font-weight: 300;
+    opacity: 0.7;
+    margin-bottom: 2rem;
+}
+
+#inicioContenedor .instruccion {
+    font-size: 0.85rem;
+    margin-top: 2rem;
+    opacity: 0.5;
+}
+
+/* Botón de inicio */
+#btnIniciar {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    color: white;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+#btnIniciar:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+#btnIniciar:active {
+    transform: scale(0.98);
+}
+
+/* Indicador de estado del micrófono */
+#estadoMic {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#estadoMic.visible {
+    opacity: 1;
+}
+
+#indicadorNivel {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.1s ease;
+}
+
+#indicadorNivel.activo {
+    background: rgba(100, 200, 255, 1);
+    box-shadow: 0 0 15px rgba(100, 200, 255, 0.8);
+}
+
+#textoEstado {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+/* Botón terminar */
+#btnTerminar {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 50, 50, 0.9);
+    border: 2px solid rgba(255, 100, 100, 0.8);
+    color: white;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 400;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 100;
+    box-shadow: 0 5px 25px rgba(255, 50, 50, 0.4);
+}
+
+#btnTerminar:hover {
+    background: rgba(255, 70, 70, 1);
+    border-color: rgba(255, 120, 120, 1);
+    box-shadow: 0 8px 35px rgba(255, 50, 50, 0.6);
+    transform: translateX(-50%) scale(1.05);
+}
+
+#btnTerminar:active {
+    transform: translateX(-50%) scale(0.98);
+}
+
+#btnTerminar .icono {
+    font-size: 1.2rem;
+}
+
+#btnTerminar.oculto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Modal de descarga */
+#modalDescarga {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(15px);
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+#modalDescarga.oculto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#modalContenido {
+    background: rgba(20, 20, 20, 0.95);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+}
+
+#modalContenido h2 {
+    color: white;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+#modalContenido .mensaje {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+/* Estado de grabación */
+#estadoGrabacion {
+    margin: 2rem 0;
+}
+
+#estadoGrabacion p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Spinner */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid rgba(100, 200, 255, 1);
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Botones de descarga */
+#botonesDescarga {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+#botonesDescarga.oculto {
+    display: none;
+}
+
+.btn-descarga, .btn-secundario {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 300;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    letter-spacing: 0.1em;
+}
+
+.btn-descarga:hover, .btn-secundario:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-descarga:active, .btn-secundario:active {
+    transform: translateY(0);
+}
+
+.btn-descarga .icono {
+    font-size: 1.5rem;
+}
+
+.btn-descarga .formato {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    margin-left: auto;
+}
+
+.btn-secundario {
+    margin-top: 1rem;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Clase utilitaria */
+.oculto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #inicioContenedor h1 {
+        font-size: 2rem;
+    }
+    
+    #modalContenido {
+        padding: 2rem;
+    }
+    
+    #modalContenido h2 {
+        font-size: 1.5rem;
+    }
+}

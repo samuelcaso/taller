@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VULTERMELODIES - Reactividad Sonora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Canvas para las ondas de energía -->
+    <canvas id="impactoCanvas"></canvas>
+    
+    <!-- Overlay de inicialización -->
+    <div id="overlay">
+        <div id="inicioContenedor">
+            <h1>VULTERMELODIES</h1>
+            <p>Experiencia de energía sonora digital</p>
+            <button id="btnIniciar">ACTIVAR MICRÓFONO</button>
+            <p class="instruccion">Haz ruido para crear ondas de energía y melodías</p>
+        </div>
+    </div>
+    
+    <!-- Indicador de estado del micrófono -->
+    <div id="estadoMic">
+        <div id="indicadorNivel"></div>
+        <span id="textoEstado">Micrófono inactivo</span>
+    </div>
+    
+    <!-- Botón terminar (oculto inicialmente) -->
+    <button id="btnTerminar" class="oculto">
+        <span class="icono">⬛</span>
+        <span>TERMINAR</span>
+    </button>
+    
+    <!-- Modal de descarga -->
+    <div id="modalDescarga" class="oculto">
+        <div id="modalContenido">
+            <h2>Sesión Finalizada</h2>
+            <p class="mensaje">Tu experiencia ha sido capturada</p>
+            
+            <div id="estadoGrabacion">
+                <div class="spinner"></div>
+                <p>Procesando grabación...</p>
+            </div>
+            
+            <div id="botonesDescarga" class="oculto">
+                <button id="btnDescargarAudio" class="btn-descarga">
+                    <span class="icono">🎵</span>
+                    <span>Descargar Audio</span>
+                    <span class="formato">MP3</span>
+                </button>
+                
+                <button id="btnDescargarVideo" class="btn-descarga">
+                    <span class="icono">🎬</span>
+                    <span>Descargar Video</span>
+                    <span class="formato">WEBM</span>
+                </button>
+                
+                <button id="btnNuevaSesion" class="btn-secundario">
+                    Nueva Sesión
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
